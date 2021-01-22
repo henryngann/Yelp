@@ -1,0 +1,43 @@
+//First - Set Up CRUD Routes - Full Stack App Steps
+
+//Created an instance of an express app and stored it in a variable called app
+const app = express()
+//Telling our express app to listen on a specific port
+app.listen(4040,()=>{
+    once server is up and running, run this call back function
+})
+//To create a route, you must reference your express instance.
+
+//first arg:url the front end is sending an http request too
+//second param is a call back function that takes (req,res)
+app.get("/url",(req,res)=>{
+    res.send("") => sends data back to the front end, the response.
+})
+
+//create middleware
+//next identifies the next place it should route too whether it be
+//another middle ware or the route handler
+app.use((req,res,next)=>{})
+
+//app.use(express.json)
+//Express has its own middle ware
+//it takes information from the body and attaches it to the request object
+
+//Connect Express to PostgreSQL
+
+Set up a database folder with index.js and in that index.js, create a pool.
+
+This will allow you to connect express.js to postgres
+
+then do const db = require("./db"); in your server.js to access it
+
+we now have access to things like db.query("select * from restaurants");
+
+If you are querying and you want to extract the query results, make sure you put it in a 
+try catch block if u r using async await
+
+
+`select * from restaurants where id = ${req.params.id}` -> use $1 syntax to prevent sql injection attacks
+
+
+SECOND -- Set up react
