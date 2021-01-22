@@ -40,4 +40,39 @@ try catch block if u r using async await
 `select * from restaurants where id = ${req.params.id}` -> use $1 syntax to prevent sql injection attacks
 
 
-SECOND -- Set up react
+SECOND -- Set up react 
+
+Set up React by cding out and doing create-react-app
+
+THIRD -- Set up Routing 
+
+Install react-router-dom and create a folder called routes.
+
+This is where you should handle all your routing and where the components will be held that handle
+the 3 pages
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+<Router>
+        <Route exact path="/" component={Home} />
+      </Router>
+
+Set up Router Parent Component first then use a route component to set up a route.
+
+Once / is hit, the component we want to load is {home}.
+
+Best Practice to wrap it in a switch because:
+Add a switch component because if you match a route, it'll stop looking for routes
+and return the route found.
+Stops react router from loading multiple components
+
+FOURTH - Context API
+
+We can choose to hand data down using props but that can be tedious. Therefore its important
+that we set up a context api to store results rather then a local state because all the components
+in our app can then retrieve that data because every component has access to the contextAPI
