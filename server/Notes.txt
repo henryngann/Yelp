@@ -157,6 +157,13 @@ setRestaurants(response.data.data.restaurants);
 
     //doing preventDefault() stops it from reloading the page
 
+
+
+
+
+
+//access the usehistory api thats part of react router
+
     try {
       RestaurantFinder.post("/", {
         name: name,
@@ -165,3 +172,15 @@ setRestaurants(response.data.data.restaurants);
       });
 
       ^ the second param is req.body
+
+      <button
+                    onClick={() => {
+                      handleDelete(el.id);
+                    }}
+                    className="btn btn-danger"
+                  >
+
+If we just put handleDelete function ,it'll just do the function right awaY
+
+Thats why we use an arrow function so when its click, itll reference the function 
+instead
