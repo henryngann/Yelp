@@ -75,4 +75,93 @@ FOURTH - Context API
 
 We can choose to hand data down using props but that can be tedious. Therefore its important
 that we set up a context api to store results rather then a local state because all the components
-in our app can then retrieve that data because every component has access to the contextAPI
+in our app can then retrieve that data because every component has access to the contextAPI\
+
+export const RestaurantsContext = createContext(); -> Creates Context
+
+RestaurantsContextProvider -> Wraps our components so they all have access to our state
+
+useState() hook to store our data
+
+<RestaurantsContext.Provider
+      value={{ restaurants: restaurants, setRestaurants }}
+    >
+
+    add value to pass down restaurants, and pass down setRestaurants so state can be updated
+
+FIFTH - Connect frontend to BACKEND by fetching data from our backend api
+
+Use axios to make api requests to our backend server.
+
+Create api folder and api file
+
+Create an axios instance and connect it to your backend port
+
+Connect it to a component to fetch data from back end server
+
+We want the component to fetch the data as soon as the component mounts on the screen
+
+To do this, we use the useEffect() hook.
+
+  // First Param is an arrow function that is a call back.
+  //It does all the things we need to do when the component mounts.
+  //The second one is an empty dependency array
+  //If you dont have this, itll keep rerunning every time the component renders
+  //which is an infinitel loop
+
+Within the useEffect hook, we are going to make an api call to our backend using the instance
+of axios we created.
+
+Since its an api call, we need to do async and await + a try and catch block
+
+We need to set up a policy that allows our front end to connect with our backend.
+
+Both use different ports/domains.
+
+Therefore we do app,use(cors()) which is a middleware . npm install cors --save
+
+This will allow our back end to communicate with our frontend because on default, 2 diff domains cannot
+talk to each other
+
+We have a   warning error becasue useeffect doesnt like it when you return something
+so what we did instead was make a function that returned something and 
+use effect simply calls that function
+
+<RestaurantsContext.Provider value={{ restaurants, setRestaurants }}>
+
+We want to store our data in restaurants because the data will be avaliable in the context api.
+
+To do this, we'll use the useContext hook and in order to do that, we have to use
+
+the context we created with createContext();
+export const RestaurantsContext = createContext();
+
+so now we say we want to use this context by doing 
+
+useContext(RestaurantsContext)
+
+after that, we simply destructure the context by doing
+
+const [restaurants, setRestaurants] = useContext(RestaurantsContext)
+
+keep in mind, this value is passed down in the 
+
+<RestaurantsContext.Provider value={{ restaurants, setRestaurants }}>
+
+now after all this we can now set the state by doing
+
+setRestaurants(response.data.data.restaurants);
+
+//The default behaviour is to reload the page
+    //When you submit a form
+
+    //doing preventDefault() stops it from reloading the page
+
+    try {
+      RestaurantFinder.post("/", {
+        name: name,
+        location: location,
+        price_range: priceRange,
+      });
+
+      ^ the second param is req.body
